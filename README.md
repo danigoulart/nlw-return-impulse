@@ -1,7 +1,7 @@
 ## Desafio Impulse - NLW Rocketseat
 
 - [x] Iniciando Projeto, Primeiros passos com React, Widget, instalando ferramentas e trazendo acessíbilidade;
-- [ ] 2/5
+- [x] 2/5
 - [ ] 3/5
 - [ ] 4/5
 - [ ] 5/5
