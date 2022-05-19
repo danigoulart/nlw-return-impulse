@@ -7,6 +7,7 @@ import thoughtImageUrl from "../../assets/thought.png";
 import { useState } from "react";
 import { FeedbackTypeStep } from "./Steps/FeedbackTypeStep";
 import { FeedbackContentStep } from "./Steps/FeedbackContentStep";
+import { FeedbackSuccessStep } from "./Steps/FeedbackSuccessStep";
 
 // Cria um Objeto que retorna um array de objetos
 export const feedbackTypes = {
@@ -41,6 +42,7 @@ export function WidgetForm() {
     const [feedbackSent, setFeedbackSent] = useState(false);
 
     function handleRestartFeedback() {
+      setFeedbackSent(false);
       setFeedbackType(null);
     }
 
@@ -48,15 +50,23 @@ export function WidgetForm() {
     <div
       className="bg-zinc-900 p-4 relative rounded-2xl mb-4 flex flex-col items-center 
         shadow-lg w-[calc(100vw-2rem)] md:w-auto ">
-    
-
-      {!feedbackType ? (
+          { feedbackSent ? (
+            <FeedbackSuccessStep onFeedbackRestartRequested={handleRestartFeedback} />
+          ) : (
+            <>
+               {!feedbackType ? (
         <FeedbackTypeStep onFeedbackTypeChanged={setFeedbackType} />
       ) : (
           <FeedbackContentStep 
           feedbackType={feedbackType}
-          onFeedbackRestartRequested={handleRestartFeedback} />
+          onFeedbackRestartRequested={handleRestartFeedback}
+          onFeedbackSent={() => setFeedbackSent(true)}
+          />
       )}
+      </>
+          ) }
+
+   
 
       <footer className="text-sx text-neutral-400">
         Feito com ♥ por Daniela Goulart{" "}
